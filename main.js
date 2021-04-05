@@ -4,18 +4,18 @@ const tick = new Audio('sounds/tick.mp3');
 // Setup 'tock' sound
 const tock = new Audio ('sounds/tock.mp3')
 
-let count=0
+let num=0
 
 // This function is called every 600ms
 function update() {
-
-    // Play the 'tick' sound
+    const count = document.querySelector('#count')
+    count.innerText = num
     if (count%4===0){
         tock.play()
     } else{
         tick.play();
     }
-    count++
+    num++
 }
 
 // This function sets up update() to be called every 600ms
