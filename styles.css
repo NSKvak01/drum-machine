@@ -70,3 +70,11 @@ body {
     transform-origin: bottom center;
     animation: tick 1200ms ease-in-out infinite;
 }
+
+#checkboxes {
+    display:flex;
+}
+
+#checkboxes, div{
+    margin-left: 10px;
+}
