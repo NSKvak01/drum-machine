@@ -52,29 +52,43 @@ body {
     border: 6px dashed #e07a5f;
 }
 
-@keyframes tick {
-    0%   { transform: rotate(-30deg); }
-    50%  { transform: rotate(30deg);  }
-    100% { transform: rotate(-30deg); }
+@keyframes bounce {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-330px);  }
+    100% { transform: translateY(0px); }
 }
 
 .arm {
-    height: 300px;
-    width: 20px;
+    height: 10px;
+    width: 30px;
     background-color: #3d405b;
     position: absolute;
-    bottom: 5px;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+    bottom: 30px;
+    margin-left: 0px;
+    /* border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px; */
     left: 165px;
-    transform-origin: bottom center;
-    animation: tick 1200ms ease-in-out infinite;
+    transform-origin: top center;
+    animation: bounce 1200ms ease-in-out infinite;
 }
 
 #checkboxes {
-    display:flex;
+    margin-bottom: 20px;
 }
 
 #checkboxes, div{
     margin-left: 10px;
+}
+
+#hi-hat-timing {
+    margin-left: 38.5px;
+}
+
+#kick-drum-timing{
+    margin-left: 10px;
+}
+
+input{
+    border: 1px solid grey;
+    border-radius:7px;
 }

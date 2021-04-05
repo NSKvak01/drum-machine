@@ -15,23 +15,57 @@ function update() {
     const kickDrum = document.querySelector('#kick-drum')
     const snareDrum = document.querySelector('#snare-drum')
     const hiHat = document.querySelector('#hi-hat')
+    const metronomeCount = (num%4)+1
+    const count = document.querySelector('#count')
+    count.innerText = num
+
+    const timingInput = document.querySelector('#metronome-timing')
+    const kickDrumTiming = document.querySelector('#kick-drum-timing')
+    const snareDrumTiming = document.querySelector('#snare-drum-timing')
+    const hiHatTiming = document.querySelector('#hi-hat-timing')
+    if(timingInput.value!== ''){
+        metronome.checked=true
+    } else {
+        metronome.checked = false
+    }
+    if(kickDrumTiming.value !==''){
+        kickDrum.checked = true
+    } else{
+        kickDrum.checked=false
+    }
+    if (snareDrumTiming.value !==''){
+        snareDrum.checked=true
+    } else{
+        snareDrum.checked=false
+    }
+    if (hiHatTiming.value !==''){
+        hiHat.checked = true
+    } else {
+        hiHat.checked=false
+    }
+
+
+
 
     if (metronome.checked){
-        const count = document.querySelector('#count')
-        count.innerText = num
-        if (num%4===0){
-            tock.play()
-        } else{
+        
+        if(Number (timingInput.value) === metronomeCount){
             tick.play();
         }
-        num++
-    } else if(kickDrum.checked){
-        kick.play()
-    } else if(snareDrum.checked){
-        snare.play()
-    } else if(hiHat.checked){
-        hi.play()
+    } if(kickDrum.checked){
+        if (Number(kickDrumTiming.value) === metronomeCount){
+            kick.play()
+        }
+    } if(snareDrum.checked){
+        if (Number(snareDrumTiming.value) === metronomeCount){
+            snare.play()
+        }
+    } if(hiHat.checked){
+        if (Number(hiHatTiming.value) === metronomeCount){
+            hi.play()
+        }
     }
+    num++
     
 
 }
