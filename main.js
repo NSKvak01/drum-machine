@@ -27,14 +27,19 @@ function update() {
         countInputNumber=4
     }
     const metronomeCount = (num%countInputNumber)+1
-    
+
     const count = document.querySelector('#count')
     count.innerText = num
+
     const tempo = document.querySelector('#tempo')
     if(tempo.value!==''){
         time=Number(tempo.value)
         const arm = document.querySelector('.arm')
-        arm.style.animationDuration= "${time*4}ms"
+        arm.style.animationDuration= `${time*4}ms`
+    } else {
+        time=300
+        const arm = document.querySelector('.arm')
+        arm.style.animationDuration= `${300*4}ms`
     }
 
     let timingInput = document.querySelector('#metronome-timing')
@@ -106,10 +111,17 @@ function update() {
     }
     }
     num++
+    updateInterval()
 }
 // This function sets up update() to be called every 600ms
+let interval;
 function setupUpdate() {
-    setInterval(update, time*2);
+    interval = setInterval(update, time*2)
+}
+
+function updateInterval(){
+    clearInterval(interval)
+    interval = setInterval(update, time*2)
 }
 
 // Call setupUpdate() once after 300ms
