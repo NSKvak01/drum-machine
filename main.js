@@ -6,6 +6,9 @@ const tock = new Audio ('sounds/tock.mp3')
 const kick = new Audio ('sounds/kick-drum.mp3')
 const snare = new Audio ('sounds/snare-drum.mp3')
 const hi = new Audio ('sounds/hi-hat.mp3')
+const noteSound = new Audio ('sounds/note.mp3')
+let time = 300
+let countInputNumber=4
 
 let num=0
 
@@ -15,14 +18,31 @@ function update() {
     const kickDrum = document.querySelector('#kick-drum')
     const snareDrum = document.querySelector('#snare-drum')
     const hiHat = document.querySelector('#hi-hat')
-    const metronomeCount = (num%4)+1
+    const note = document.querySelector('#note')
+
+    const countInput = document.querySelector('#count-input')
+    if (countInput.value !== ''){
+        countInputNumber = Number(countInput.value)
+    } else {
+        countInputNumber=4
+    }
+    const metronomeCount = (num%countInputNumber)+1
+    
     const count = document.querySelector('#count')
     count.innerText = num
+    const tempo = document.querySelector('#tempo')
+    if(tempo.value!==''){
+        time=Number(tempo.value)
+        const arm = document.querySelector('.arm')
+        arm.style.animationDuration= "${time*4}ms"
+    }
 
-    const timingInput = document.querySelector('#metronome-timing')
-    const kickDrumTiming = document.querySelector('#kick-drum-timing')
-    const snareDrumTiming = document.querySelector('#snare-drum-timing')
-    const hiHatTiming = document.querySelector('#hi-hat-timing')
+    let timingInput = document.querySelector('#metronome-timing')
+    let kickDrumTiming = document.querySelector('#kick-drum-timing')
+    let snareDrumTiming = document.querySelector('#snare-drum-timing')
+    let hiHatTiming = document.querySelector('#hi-hat-timing')
+    let noteTiming = document.querySelector('#note-timing')
+
     if(timingInput.value!== ''){
         metronome.checked=true
     } else {
@@ -43,37 +63,64 @@ function update() {
     } else {
         hiHat.checked=false
     }
-
-
-
+    if (noteTiming.value !==''){
+        note.checked = true
+    } else {
+        note.checked = false
+    }
 
     if (metronome.checked){
-        
-        if(Number (timingInput.value) === metronomeCount){
-            tick.play();
+        timingInput = timingInput.value.split(' ')
+        for (const tact of timingInput){
+            if(Number (tact) === metronomeCount){
+                tick.play();
+            }
         }
     } if(kickDrum.checked){
-        if (Number(kickDrumTiming.value) === metronomeCount){
+        kickDrumTiming = kickDrumTiming.value.split(' ')
+        for (const tact of kickDrumTiming){
+        if (Number(tact) === metronomeCount){
             kick.play()
         }
+        }
     } if(snareDrum.checked){
-        if (Number(snareDrumTiming.value) === metronomeCount){
+        snareDrumTiming=snareDrumTiming.value.split(' ')
+        for (const tact of snareDrumTiming){
+        if (Number(tact) === metronomeCount){
             snare.play()
         }
+    }
     } if(hiHat.checked){
-        if (Number(hiHatTiming.value) === metronomeCount){
+        hiHatTiming = hiHatTiming.value.split(' ')
+        for (const tact of hiHatTiming){
+        if (Number(tact) === metronomeCount){
             hi.play()
         }
     }
+    } if(note.checked){
+        noteTiming=noteTiming.value.split(' ')
+        for (const tact of noteTiming){
+        if (Number(tact) === metronomeCount){
+            noteSound.play()
+        }
+    }
+    }
     num++
-    
-
 }
-
 // This function sets up update() to be called every 600ms
 function setupUpdate() {
-    setInterval(update, 600);
+    setInterval(update, time*2);
 }
 
 // Call setupUpdate() once after 300ms
-setTimeout(setupUpdate, 300);
+setTimeout(setupUpdate, time);
+
+const input = document.querySelectorAll('input')
+const clear = document.querySelector('#clear')
+
+
+clear.addEventListener('click', ()=>{
+    for (const item of input){
+        item.value = ''
+    }
+})

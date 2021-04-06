@@ -7,7 +7,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: none;
+    /* margin: none; */
     flex-direction: column;
     background-color: #81b29a;
 }
@@ -27,20 +27,20 @@ body {
 }
 
 .background-left {
-    border-bottom: 400px solid #e07a5f;
+    border-bottom: 400px solid #7fe05f;
     border-left: 100px solid transparent;
 }
 
 .background-center {
     flex: 1;
-    background-color: #f2cc8f;
+    background-color: #ffea00;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 .background-right {
-    border-bottom: 400px solid #e07a5f;
+    border-bottom: 400px solid #ff00f7;
     border-right: 100px solid transparent;
 }
 
@@ -49,7 +49,7 @@ body {
     width: 30%;
     background-color: #f4f1de;
     margin: 24px 0;
-    border: 6px dashed #e07a5f;
+    border: 6px dashed #7300ff;
 }
 
 @keyframes bounce {
@@ -60,11 +60,11 @@ body {
 
 .arm {
     height: 10px;
-    width: 30px;
-    background-color: #3d405b;
+    width: 90px;
+    background-color: #ff0808;
     position: absolute;
     bottom: 30px;
-    margin-left: 0px;
+    margin-left: -30px;
     /* border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px; */
     left: 165px;
@@ -81,7 +81,7 @@ body {
 }
 
 #hi-hat-timing {
-    margin-left: 38.5px;
+    margin-left: 38px;
 }
 
 #kick-drum-timing{
@@ -91,4 +91,24 @@ body {
 input{
     border: 1px solid grey;
     border-radius:7px;
+    width:70px;
+}
+
+#tempo{
+    width:146px;
+    margin-top: 10px;
+}
+
+#clear{
+    margin-left: 100px;
+    margin-top: 20px;
+}
+
+#note-timing{
+    margin-left: 45px;
+}
+
+#count-input {
+    width: 146px;
+    margin-top: 5px;
 }
